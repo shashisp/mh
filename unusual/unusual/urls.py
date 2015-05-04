@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from campaigns.api import CampaignResource, MilestoneResource
+
+campaign_resource = CampaignResource()
+milestone_resource = MilestoneResource()
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api/', include(campaign_resource.urls)),
+    url(r'^api/', include(milestone_resource.urls)),
+
 ]
