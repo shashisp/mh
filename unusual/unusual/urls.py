@@ -16,13 +16,18 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from campaigns.api import CampaignResource, MilestoneResource
+from tastypie.api import Api
 
 campaign_resource = CampaignResource()
 milestone_resource = MilestoneResource()
 
+v1_api = Api(api_name='v1')
+v1_api.register(CampaignResource())
+v1_api.register(MilestoneResource())
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^api/', include(campaign_resource.urls)),
-    url(r'^api/', include(milestone_resource.urls)),
+    url(r'^api/', include(v1_api.urls)),
 
 ]
+
