@@ -28,6 +28,7 @@ v1_api.register(MilestoneResource())
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(v1_api.urls)),
+    url('', include('social.apps.django_app.urls', namespace='social')),
 
 ]
 
